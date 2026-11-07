@@ -1,0 +1,5 @@
+web/node_modules/
+web/dist/
+web/package-lock.json
+db/seed.sql
+DECISIONS.md

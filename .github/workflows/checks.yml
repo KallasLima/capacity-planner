@@ -1,0 +1,41 @@
+name: Checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17.11-alpine
+        env:
+          POSTGRES_USER: capacity
+          POSTGRES_PASSWORD: capacity
+          POSTGRES_DB: capacity
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U capacity"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://capacity:capacity@localhost:5432/capacity?sslmode=disable
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 24.22.2
+      - uses: actions/setup-go@v7.0.0
+        with:
+          go-version: 1.27.3
+          cache-dependency-path: api/go.sum
+      - run: psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f db/schema.sql -f db/seed.sql
+      - run: go test ./... -count=1 && go vet ./... && go build ./...
+        working-directory: api
+      - run: npm ci
+        working-directory: web
+      - run: npm test && npm run build && npm audit --audit-level=moderate
+        working-directory: web
+      - run: node web/node_modules/prettier/bin/prettier.cjs --check .

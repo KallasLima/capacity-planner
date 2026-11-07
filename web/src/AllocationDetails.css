@@ -1,0 +1,325 @@
+/* Native dialog shell: full-height inspector with its own contained scroll. */
+.allocation-details {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(440px, 100vw);
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid #ded7e4;
+  color: #302537;
+  background: #fff;
+  box-shadow: -16px 0 60px #24142f26;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-size: 14px;
+}
+.allocation-details::backdrop {
+  background: #22152d70;
+}
+
+/* Person identity and close action. */
+.allocation-details-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 30px 28px 24px;
+}
+.allocation-details-eyebrow {
+  color: #705d7b;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 1.2px;
+  margin: 0 0 9px;
+}
+.allocation-details h2 {
+  font-size: 27px;
+  font-weight: 740;
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+
+/* Shared controls retain visible keyboard focus throughout the inspector. */
+.allocation-details button {
+  min-width: 40px;
+  min-height: 40px;
+  padding: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd5e3;
+  color: #48265d;
+  background: #fff;
+  border-radius: 7px;
+}
+.allocation-details button:hover {
+  background: #f3edf7;
+  border-color: #b79ac8;
+}
+.allocation-details button:focus-visible {
+  outline: 3px solid #85569e;
+  outline-offset: 3px;
+}
+.allocation-details button svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.allocation-details .allocation-details-close {
+  flex: 0 0 auto;
+  border-color: transparent;
+  margin-top: -5px;
+  margin-right: -8px;
+}
+
+/* Week navigation separates the selected dates from the allocation details. */
+.allocation-details-week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #f8f5fa;
+  border-block: 1px solid #e9e1ee;
+  padding: 12px 20px;
+}
+.allocation-details-week-nav p {
+  text-align: center;
+  color: #48265d;
+  font-weight: 650;
+  font-size: 13px;
+  margin: 0;
+}
+.allocation-details-week-nav button {
+  flex: 0 0 auto;
+}
+.allocation-details-content {
+  padding: 26px 28px 40px;
+}
+.allocation-details-loading {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #705d7b;
+  padding-block: 25px;
+}
+.allocation-details-loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #805399;
+  box-shadow: 0 0 0 5px #f0e8f5;
+  flex: 0 0 auto;
+}
+.allocation-details-error {
+  border: 1px solid #e3bca7;
+  background: #fff7f2;
+  padding: 20px;
+  border-radius: 8px;
+  color: #793c22;
+}
+.allocation-details-error h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+.allocation-details-error p {
+  margin: 0 0 18px;
+  overflow-wrap: anywhere;
+}
+.allocation-details-error button {
+  padding-inline: 18px;
+  font-weight: 650;
+}
+
+/* Saved weekly totals; overload colors supplement the numeric comparison. */
+.allocation-details-summary {
+  padding-bottom: 26px;
+  border-bottom: 1px solid #e7e0eb;
+}
+.allocation-details-summary-label {
+  color: #705d7b;
+  font-size: 13px;
+  margin: 0 0 5px;
+}
+.allocation-details-total {
+  font-size: 54px;
+  font-weight: 730;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin: 0;
+  color: #48265d;
+}
+.allocation-details-total span {
+  font-size: 27px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+.allocation-details-capacity {
+  margin: 9px 0 18px;
+  color: #705d7b;
+  font-size: 14px;
+}
+.allocation-details-capacity-track {
+  height: 7px;
+  border-radius: 3px;
+  background: #eee7f2;
+  overflow: hidden;
+}
+.allocation-details-capacity-track span {
+  height: 100%;
+  display: block;
+  background: #6b3c85;
+  border-radius: inherit;
+}
+.allocation-details-balance {
+  color: #56356a;
+  font-size: 13px;
+  font-weight: 650;
+  margin: 10px 0 0;
+}
+.allocation-details-summary-over .allocation-details-total {
+  color: #a3532c;
+}
+.allocation-details-summary-over .allocation-details-capacity-track {
+  background: #f8e8de;
+}
+.allocation-details-summary-over .allocation-details-capacity-track span {
+  background: #bc7049;
+}
+.allocation-details-summary-over .allocation-details-balance {
+  color: #94512e;
+}
+
+/* Project contributions retain their exact hours alongside the visual tracks. */
+.allocation-details-projects {
+  padding-top: 25px;
+}
+.allocation-details-section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.allocation-details-section-title h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.35px;
+}
+.allocation-details-section-title > span {
+  font-size: 12px;
+  color: #705d7b;
+  white-space: nowrap;
+}
+.allocation-details-project-intro {
+  margin: 8px 0 0;
+  color: #705d7b;
+  font-size: 12px;
+}
+.allocation-details-project-list {
+  list-style: none;
+  padding: 0;
+  margin: 9px 0 0;
+}
+.allocation-details-project-list li {
+  padding: 20px 0;
+  border-bottom: 1px solid #eee8f2;
+}
+.allocation-details-project-heading {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.allocation-details-project-heading h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.allocation-details-project-heading p {
+  margin: 0;
+  color: #48265d;
+  font-weight: 720;
+  font-size: 18px;
+  white-space: nowrap;
+}
+.allocation-details-project-heading p span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #705d7b;
+}
+.allocation-details-project-track {
+  height: 5px;
+  border-radius: 3px;
+  background: #f0eaf4;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.allocation-details-project-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #9772ac;
+}
+.allocation-details-assignment-count {
+  font-size: 12px;
+  color: #705d7b;
+  margin: 8px 0 0;
+}
+
+/* Keep proposed limits visually separate from the inspector's saved totals. */
+.allocation-details-draft-context {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #f3edf8;
+  color: #583b69;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* An empty week is distinct from a failed request. */
+.allocation-details-empty {
+  padding: 36px 14px;
+  text-align: center;
+}
+.allocation-details-empty svg {
+  width: 34px;
+  height: 34px;
+  stroke: #80608f;
+  stroke-width: 1.6;
+  margin-bottom: 13px;
+}
+.allocation-details-empty h4 {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+.allocation-details-empty p {
+  color: #705d7b;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Narrow screens keep the same inspector content with reduced side padding. */
+@media (max-width: 440px) {
+  .allocation-details-header {
+    padding: 26px 22px 22px;
+  }
+  .allocation-details-content {
+    padding: 24px 22px 36px;
+  }
+  .allocation-details-week-nav {
+    padding-inline: 14px;
+  }
+  .allocation-details h2 {
+    font-size: 25px;
+  }
+}

@@ -1,0 +1,84 @@
+/* Compact ratio and meter: exact hours remain the primary signal. */
+.allocation.compact-allocation {
+  min-height: 50px;
+  padding: 4px 8px;
+  margin: -3px -7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.allocation.compact-allocation .allocation-numbers {
+  gap: 5px;
+  line-height: 20px;
+}
+
+.allocation.compact-allocation .allocation-numbers strong {
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  font-weight: 680;
+  color: #51315f;
+}
+
+.allocation.compact-allocation .allocation-numbers > .allocation-capacity {
+  font-size: 14px;
+  color: #735b80;
+  line-height: 20px;
+}
+
+.allocation.compact-allocation .allocation-capacity > span {
+  font-size: 12px;
+}
+
+/* The visual fill is capped; exception text carries the excess amount. */
+.allocation.compact-allocation .meter {
+  height: 3px;
+  margin: 5px 0 0;
+  background: #eee8f2;
+}
+
+.allocation.compact-allocation .meter > span {
+  background: #9671ac;
+}
+
+.allocation.compact-allocation .allocation-caption {
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 2px;
+  white-space: nowrap;
+  color: #8b431f;
+  font-weight: 650;
+}
+
+/* Overload keeps a textual cue alongside its stronger color treatment. */
+.allocation.compact-allocation.over {
+  background: #fceee4;
+}
+
+.allocation.compact-allocation.over .allocation-numbers strong {
+  color: #91441e;
+}
+
+.allocation.compact-allocation.over .allocation-numbers > .allocation-capacity {
+  color: #835136;
+}
+
+.allocation.compact-allocation.over .meter {
+  background: #f1dccc;
+}
+
+.allocation.compact-allocation.over .meter > span {
+  background: #b86738;
+}
+
+/* Empty allocations stay readable without competing with active work. */
+.allocation.compact-allocation.unallocated .allocation-numbers strong {
+  color: #7c6a87;
+  font-weight: 550;
+}
+
+.allocation.compact-allocation.unallocated .meter {
+  background: #f1edf4;
+}

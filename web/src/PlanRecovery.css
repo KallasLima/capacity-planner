@@ -1,0 +1,86 @@
+.plan-recovery {
+  margin: 16px 0;
+  padding: 16px 18px;
+  border-left: 3px solid #9571ac;
+  border-radius: 5px;
+  background: #eee8f4;
+  color: #382643;
+}
+
+.plan-recovery-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.plan-recovery-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  color: #6b4c7d;
+}
+
+.plan-recovery h2 {
+  margin: 4px 0;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.plan-recovery p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.plan-recovery-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.plan-recovery-actions button {
+  min-height: 36px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.plan-recovery-discard {
+  border: 1px solid #cbbad6;
+  background: #fff;
+  color: #533368;
+}
+
+.plan-recovery-restore {
+  border: 1px solid #53326d;
+  background: #53326d;
+  color: #fff;
+}
+
+.plan-recovery-explanation,
+.plan-recovery-warning,
+.plan-recovery-error {
+  margin-top: 10px;
+}
+
+.plan-recovery-error,
+.plan-recovery-warning {
+  color: #853e23;
+}
+
+@media (max-width: 680px) {
+  .plan-recovery {
+    padding: 14px;
+  }
+
+  .plan-recovery-heading {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .plan-recovery-actions {
+    justify-content: flex-end;
+  }
+}
